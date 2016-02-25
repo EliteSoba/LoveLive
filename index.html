@@ -27,15 +27,24 @@
 			text-align: center;
 		}
 		#responseArea {
-			padding-top: 50px;
+			padding-top: 20px;
+		}
+		#responseArea div {
+			padding-bottom: 20px;
 		}
 		h1 {
 			text-align: center;
 		}
-		#total {
+		#ptotal {
 			color: rgb(60, 205, 78);
 		}
-		#bonus {
+		#stotal {
+			color: #FF17A4;
+		}
+		#ctotal {
+			color: #0051FF;
+		}
+		.bonus {
 			color: rgb(255, 58, 58);
 		}
 	</style>
@@ -244,9 +253,21 @@
 	</div>
 	<div class="container" id="responseArea">
 		<div>
-			Total: 
-			<span id="total">0 </span>
-			<span id="bonus">(+0)</span>
+			<div class="col-md-4">
+				Smile: 
+				<span id="stotal">0 </span>
+				<span class="bonus" id="sbonus">(+0)</span>
+			</div>
+			<div class="col-md-4">
+				Pure: 
+				<span id="ptotal">0 </span>
+				<span class="bonus" id="pbonus">(+0)</span>
+			</div>
+			<div class="col-md-4">
+				Cool: 
+				<span id="ctotal">0 </span>
+				<span class="bonus" id="cbonus">(+0)</span>
+			</div>
 		</div>
 		<h2>Score with All Perfects</h2>
 		<div class="col-md-4">
@@ -369,9 +390,13 @@ function init() {
 		abonus = Math.round(abonus);
 		//console.log((pure + bond + cbonus + abonus) + "(+" + (bond + cbonus + abonus) + ")");
 		var total = pure + bond + cbonus + abonus;
+		
+		$("#ptotal").html(total);
+		$("#pbonus").html("(+" + (bond + cbonus + abonus) + ")");
+		$("#stotal").html(smile);
+		$("#ctotal").html(cool);
+		
 		var base = 48 * Math.floor(total * 0.0125 * 1.1) + 2 * Math.floor(total * 0.0125 * 1.1 * 1.25);
-		$("#total").html(total);
-		$("#bonus").html("(+" + (bond + cbonus + abonus) + ")");
 		base += 43 * Math.floor(total * 0.0125 * 1.1 * 1.1) + 7 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.1);
 		base += 178 * Math.floor(total * 0.0125 * 1.1 * 1.15) + 22 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.15);
 		base += 56 * Math.floor(total * 0.0125 * 1.1 * 1.2) + 15 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.2);
