@@ -1,0 +1,401 @@
+﻿<html>
+<head>
+	<meta charset="utf-8">
+	<title>Love Live Score Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!--link href="css/something.css" rel="stylesheet"-->
+	<style type="text/css">
+		.col-md-1 {
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-bottom: 15px;
+		}
+		.col-md-2 {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.col-md-3 {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.col-md-5 {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.container {
+			text-align: center;
+		}
+		#responseArea {
+			padding-top: 50px;
+		}
+		h1 {
+			text-align: center;
+		}
+		#total {
+			color: rgb(60, 205, 78);
+		}
+		#bonus {
+			color: rgb(255, 58, 58);
+		}
+	</style>
+</head>
+<body>
+	<h1>Futari Happiness - Hard</h1>
+	<div style="text-align: center;">(Assumes all members are of the correct attribute)</div>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="http://openlayers.org/api/OpenLayers.js"></script>
+	<script src="js/jquery-1.11.3.js"></script>
+	<div class="container">
+		<form role="form">
+			<div class="row">
+				<div class="col-md-3">
+					<label for="title">Category</span></label>
+					<input type="number" class="form-control" disabled placeholder="Smile">
+					<input type="number" class="form-control" disabled placeholder="Pure">
+					<input type="number" class="form-control" disabled placeholder="Cool">
+					<input type="number" class="form-control" disabled placeholder="Bond (0 if wrong attribute)" >
+					<input type="number" class="form-control" disabled placeholder="Score Up Points (0 if not Score Up)">
+					<input type="number" class="form-control" disabled placeholder="Score Up Chance (0-100%)">
+					<input type="number" class="form-control" disabled placeholder="Score Up Type">
+					<input type="number" class="form-control" disabled placeholder="# of Seconds, Notes, etc.">
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 1</span></label>
+					<input type="number" class="form-control" id="1smile" >
+					<input type="number" class="form-control" id="1pure" >
+					<input type="number" class="form-control" id="1cool" >
+					<input type="number" class="form-control" id="1bond" >
+					<input type="number" class="form-control" id="1points" >
+					<input type="number" class="form-control" id="1chance" >
+					<select class="form-control" id="1type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="1freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 2</span></label>
+					<input type="number" class="form-control" id="2smile" >
+					<input type="number" class="form-control" id="2pure" >
+					<input type="number" class="form-control" id="2cool" >
+					<input type="number" class="form-control" id="2bond" >
+					<input type="number" class="form-control" id="2points" >
+					<input type="number" class="form-control" id="2chance" >
+					<select class="form-control" id="2type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="2freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 3</span></label>
+					<input type="number" class="form-control" id="3smile" >
+					<input type="number" class="form-control" id="3pure" >
+					<input type="number" class="form-control" id="3cool" >
+					<input type="number" class="form-control" id="3bond" >
+					<input type="number" class="form-control" id="3points" >
+					<input type="number" class="form-control" id="3chance" >
+					<select class="form-control" id="3type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="3freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 4</span></label>
+					<input type="number" class="form-control" id="4smile" >
+					<input type="number" class="form-control" id="4pure" >
+					<input type="number" class="form-control" id="4cool" >
+					<input type="number" class="form-control" id="4bond" >
+					<input type="number" class="form-control" id="4points" >
+					<input type="number" class="form-control" id="4chance" >
+					<select class="form-control" id="4type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="4freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Center</span></label>
+					<input type="number" class="form-control" id="5smile" >
+					<input type="number" class="form-control" id="5pure" >
+					<input type="number" class="form-control" id="5cool" >
+					<input type="number" class="form-control" id="5bond" >
+					<input type="number" class="form-control" id="5points" >
+					<input type="number" class="form-control" id="5chance" >
+					<select class="form-control" id="5type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="5freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 6</span></label>
+					<input type="number" class="form-control" id="6smile" >
+					<input type="number" class="form-control" id="6pure" >
+					<input type="number" class="form-control" id="6cool" >
+					<input type="number" class="form-control" id="6bond" >
+					<input type="number" class="form-control" id="6points" >
+					<input type="number" class="form-control" id="6chance" >
+					<select class="form-control" id="6type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="6freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 7</span></label>
+					<input type="number" class="form-control" id="7smile" >
+					<input type="number" class="form-control" id="7pure" >
+					<input type="number" class="form-control" id="7cool" >
+					<input type="number" class="form-control" id="7bond" >
+					<input type="number" class="form-control" id="7points" >
+					<input type="number" class="form-control" id="7chance" >
+					<select class="form-control" id="7type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="7freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 8</span></label>
+					<input type="number" class="form-control" id="8smile" >
+					<input type="number" class="form-control" id="8pure" >
+					<input type="number" class="form-control" id="8cool" >
+					<input type="number" class="form-control" id="8bond" >
+					<input type="number" class="form-control" id="8points" >
+					<input type="number" class="form-control" id="8chance" >
+					<select class="form-control" id="8type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="8freq" >
+				</div>
+				<div class="col-md-1">
+					<label for="title">Member 9</span></label>
+					<input type="number" class="form-control" id="9smile" >
+					<input type="number" class="form-control" id="9pure" >
+					<input type="number" class="form-control" id="9cool" >
+					<input type="number" class="form-control" id="9bond" >
+					<input type="number" class="form-control" id="9points" >
+					<input type="number" class="form-control" id="9chance" >
+					<select class="form-control" id="9type">
+						<option selected value="">Select the Score Up Type</option>
+						<option value="c">Combo</option>
+						<option value="p">Perfects</option>
+						<option value="t">Timer</option>
+						<option value="o">Total</option>
+					</select>
+					<input type="number" class="form-control" id="9freq" >
+				</div>
+				<div class="col-md-5">
+					<select class="form-control" id="cskill">
+						<option selected value="">Select Center Skill</option>
+						<option value="1">Attribute Power (0.03*Attribute)</option>
+						<option value="2">Attribute Heart (0.06*Attribute)</option>
+						<option value="3">Smile Princess/Pure Angel/Cool Empress (0.09*Attribute)</option>
+						<option value="4">Smile/Cool Angel (0.12*Pure)</option>
+						<option value="5">Smile/Pure Empress (0.12*Cool)</option>
+						<option value="6">Pure/Cool Princess (0.12*Smile)</option>
+					</select>
+				</div>
+				<div class="col-md-5">
+					<select class="form-control" id="askill">
+						<option selected value="">Select Assist Skill</option>
+						<option value="1">Attribute Power (0.03*Attribute)</option>
+						<option value="2">Attribute Heart (0.06*Attribute)</option>
+						<option value="3">Smile Princess/Pure Angel/Cool Empress (0.09*Attribute)</option>
+						<option value="4">Smile/Cool Angel (0.12*Pure)</option>
+						<option value="5">Smile/Pure Empress (0.12*Cool)</option>
+						<option value="6">Pure/Cool Princess (0.12*Smile)</option>
+					</select>
+				</div>
+				<div class="col-md-2" id="buttons">
+					<button type="button" id="search" class="btn btn-primary btn-block"> Go! </button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="container" id="responseArea">
+		<div>
+			Total: 
+			<span id="total">0 </span>
+			<span id="bonus">(+0)</span>
+		</div>
+		<h2>Score with All Perfects</h2>
+		<div class="col-md-4">
+			<h3>Minimum Score</h3>
+			<span id="minScore">0</span>
+		</div>
+		<div class="col-md-4">
+			<h3>Expected Average Score</h3>
+			<span id="avgScore">0</span>
+		</div>
+		<div class="col-md-4">
+			<h3>Maximum Score</h3>
+			<span id="maxScore">0</span>
+		</div>
+	</div>
+</body>
+
+<script>
+
+function scoreUp(member) {
+	var points = parseInt($("input[id='" + member + "points']").val());
+	if (!points > 0) {
+		return [0, 0];
+	}
+	var chance = parseInt($("input[id='" + member + "chance']").val());
+	if (!(chance >= 0 && chance <= 100)) {
+		return [0, 0];
+	}
+	var freq = parseInt($("input[id='" + member + "freq']").val());
+	if (!freq > 0) {
+		return [0, 0];
+	}
+	var num = 0;
+	
+	switch($("#" + member + "type").val()){
+		case "c": //Combo
+		case "o": //Total
+		case "p": //Perfect
+		num = 271
+		break;
+		case "t": //Time
+		num = 120;
+	}
+	num *= 1.0 / freq;
+	num = Math.floor(num);
+	num *= points;
+	return [num, num * chance / 100];
+}
+
+$(document).ready(init());
+function init() {
+	$("#search").click(function() {
+		//Hardcoding to Pure right now
+		var smile = 0;
+		var pure = 0;
+		var cool = 0;
+		var bond = 0;
+		for (var i = 1; i <= 9; i++) {
+			var curr = parseInt($("input[id='" + i + "smile']").val());
+			if (curr > 0) {
+				smile += curr;
+			}
+			var curr = parseInt($("input[id='" + i + "pure']").val());
+			if (curr > 0) {
+				pure += curr;
+			}
+			var curr = parseInt($("input[id='" + i + "cool']").val());
+			if (curr > 0) {
+				cool += curr;
+			}
+			var curr = parseInt($("input[id='" + i + "bond']").val());
+			if (curr > 0) {
+				bond += curr;
+			}
+		}
+		/*console.log(smile);
+		console.log(pure);
+		console.log(cool);
+		console.log(bond);*/
+		var cbonus = 0;
+		switch(parseInt($("#cskill").val())){
+			case 1: //0.03*Pure
+			cbonus = pure * 0.03;
+			break;
+			case 2: //0.06*Pure
+			cbonus = pure * 0.06;
+			break;
+			case 3: //0.09*Pure
+			case 4: //Same as above for Pure
+			cbonus = pure * 0.09;
+			break;
+			case 5: //0.12*Cool
+			cbonus = cool * 0.12;
+			break;
+			case 6: //0.12*Smile
+			cbonus = smile * 0.12;
+			break;
+		}
+		//console.log($("#cskill").val());
+		cbonus = Math.round(cbonus);
+		var abonus = 0;
+		switch(parseInt($("#askill").val())){
+			case 1: //0.03*Pure
+			abonus = pure * 0.03;
+			break;
+			case 2: //0.06*Pure
+			abonus = pure * 0.06;
+			break;
+			case 3: //0.09*Pure
+			case 4: //Same as above for Pure
+			abonus = pure * 0.09;
+			break;
+			case 5: //0.12*Cool
+			abonus = cool * 0.12;
+			break;
+			case 6: //0.12*Smile
+			abonus = smile * 0.12;
+			break;
+		}
+		abonus = Math.round(abonus);
+		//console.log((pure + bond + cbonus + abonus) + "(+" + (bond + cbonus + abonus) + ")");
+		var total = pure + bond + cbonus + abonus;
+		var base = 48 * Math.floor(total * 0.0125 * 1.1) + 2 * Math.floor(total * 0.0125 * 1.1 * 1.25);
+		$("#total").html(total);
+		$("#bonus").html((bond + cbonus + abonus));
+		base += 43 * Math.floor(total * 0.0125 * 1.1 * 1.1) + 7 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.1);
+		base += 178 * Math.floor(total * 0.0125 * 1.1 * 1.15) + 22 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.15);
+		base += 56 * Math.floor(total * 0.0125 * 1.1 * 1.2) + 15 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.2);
+		//[X] First half done; Second half is converting Score Up stats into expected and max values
+		//[ ] Consider adding greats% with an analagous min-max where max puts greats at <50 normal and min puts greats at <400 holds. This could be done by putting all values into sorted list and multiplying the first or last n entries by 0.88 to simulate a Great
+		//[ ] Also preserve data
+		//[ ] Handle incorrect attribute stuff later
+		//[ ] In the distant future, work for every song and connect team to actual cards. Maybe just rewrite and push something to schoolido.lu if possible
+		//[X] Formula for Score Up is floor(total time or notes / period) * (chance / 100.0) * points
+		//[X] Multiply by chance% to get avg from max
+		//[ ] Perfect, Total, and Rhythmical Score Up identical here. Total and Rhythmical will remain identical, but Perfect might change if Great% is implemented
+		//Also an option to change between inputting each card and just inputting the total stat
+		var avg = base;
+		var max = base;
+		for (var i = 1; i <= 9; i++) {
+			score = scoreUp(i);
+			max += score[0];
+			avg += score[1];
+		}
+		$("#minScore").html(base);
+		$("#avgScore").html(Math.floor(avg));
+		$("#maxScore").html(max);
+		
+	});
+}
+</script>
+</html>
