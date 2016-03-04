@@ -411,10 +411,16 @@ function init() {
 		$("#stotal").html(smile);
 		$("#ctotal").html(cool);
 		
-		var base = 48 * Math.floor(total * 0.0125 * 1.1) + 2 * Math.floor(total * 0.0125 * 1.1 * 1.25);
+		var base = 0;
+		console.log(base);
+		base += 48 * Math.floor(total * 0.0125 * 1.1) + 2 * Math.floor(total * 0.0125 * 1.1 * 1.25);
+		console.log(base);
 		base += 43 * Math.floor(total * 0.0125 * 1.1 * 1.1) + 7 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.1);
+		console.log(base);
 		base += 178 * Math.floor(total * 0.0125 * 1.1 * 1.15) + 22 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.15);
+		console.log(base);
 		base += 56 * Math.floor(total * 0.0125 * 1.1 * 1.2) + 15 * Math.floor(total * 0.0125 * 1.1 * 1.25 * 1.2);
+		console.log(base);
 		//[X] First half done; Second half is converting Score Up stats into expected and max values
 		//[ ] Consider adding greats% with an analagous min-max where max puts greats at <50 normal and min puts greats at <400 holds. This could be done by putting all values into sorted list and multiplying the first or last n entries by 0.88 to simulate a Great
 		//[ ] Also preserve data
